@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel</title>
+<style>
+body {
+  min-height:100vh;
+  font-family:'Poppins',sans-serif;
+  background: linear-gradient(135deg, #fbc2eb, #a6c1ee, #ffecd2, #fcb69f);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:20px;
+}
+@keyframes gradientBG {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+h1 { color:#ff3c78; margin-bottom:20px; }
+.container {
+  background:white;
+  border-radius:25px;
+  padding:20px;
+  max-width:800px;
+  width:100%;
+  box-shadow:0 15px 30px rgba(0,0,0,0.2);
+  margin-bottom:20px;
+}
+button { padding:10px 15px; margin:5px; border:none; border-radius:10px; background:#ff3c78; color:white; cursor:pointer; }
+button:hover { background:#ff1a5c; }
+table { width:100%; border-collapse:collapse; margin-top:15px; }
+th,td { padding:12px; text-align:left; border-bottom:1px solid #ddd; }
+</style>
+</head>
+<body>
+<h1>Admin Dashboard</h1>
+<div class="container" id="userList">Loading pending registrations...</div>
+<button onclick="runDraw()">Run Final Draw</button>
+
+<script>
+// Fetch users and approve/reject
+async function loadUsers(){
+  const res = await fetch('/admin/users');
+  const users = await res.json();
+  const container = document.getElementById('userList');
+  if(users.length === 0){ container.innerHTML = "No pending registrations."; return; }
+  let html = '<table><tr><th>Name</th><th>Mobile</th><th>UTR</th><th>Status</th><th>Action</th></tr>';
+  users.forEach(u=>{
+    html+=`<tr><td>${u.name}</td><td>${u.mobile}</td><td>${u.utr}</td><td>${u.status}</td>
+    <td>
+    <button onclick="approve('${u.mobile}')">Approve</button>
+    <button onclick="reject('${u.mobile}')">Reject</button>
+    </td></tr>`;
+  });
+  html+='</table>';
+  container.innerHTML = html;
+}
+async function approve(mobile){ await fetch('/admin/approve',{method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({mobile})}); loadUsers(); }
+async function reject(mobile){ await fetch('/admin/reject',{method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({mobile})}); loadUsers(); }
+async function runDraw(){ const res = await fetch('/admin/draw'); if(res.ok) alert('🎉 Lucky Draw completed!'); }
+loadUsers();
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lucky Draw Winners</title>
+<style>
+body {
+  min-height:100vh;
+  font-family:'Poppins',sans-serif;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  background: linear-gradient(135deg, #fcb69f, #ffecd2, #a6c1ee, #fbc2eb);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+@keyframes gradientBG {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+h1 { color:#ff3c78; margin-top:30px; margin-bottom:20px; }
+.container { background:white; border-radius:25px; padding:30px; box-shadow:0 15px 30px rgba(0,0,0,0.2); text-align:center; max-width:500px; width:100%; }
+.winner { background:linear-gradient(135deg,#ff9a9e,#fad0c4); padding:15px; border-radius:15px; margin:10px; color:white; font-weight:bold; font-size:18px; }
+</style>
+</head>
+<body>
+<h1>🎉 Lucky Draw Winners 🎉</h1>
+<div class="container" id="winners">Loading winners...</div>
+<script>
+async function loadWinners(){
+  const res = await fetch('/winners');
+  const winners = await res.json();
+  const container = document.getElementById('winners');
+  if(winners.length===0){ container.innerHTML="Winners will be announced on 26th Jan."; return; }
+  let html='';
+  winners.forEach((w,i)=>{ html+=`<div class="winner">🏆 ${i+1} - ${w.name} (${w.prize})</div>`; });
+  container.innerHTML = html;
+}
+loadWinners();
+</script>
+</body>
+</html>
