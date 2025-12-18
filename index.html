@@ -1,109 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lucky Draw 2026</title>
+<title>Lucky Draw Registration</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-* { box-sizing:border-box; margin:0; padding:0; font-family:'Poppins', sans-serif; }
-body {
-  min-height:100vh; display:flex; justify-content:center; align-items:center;
-  overflow-x:hidden; background: linear-gradient(135deg, #fbc2eb, #a6c1ee, #ffecd2, #fcb69f);
-  background-size: 400% 400%; animation: gradientBG 15s ease infinite; position:relative;
+body{
+margin:0;
+font-family: 'Segoe UI', sans-serif;
+background: linear-gradient(120deg,#0f2027,#203a43,#2c5364);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
 }
-@keyframes gradientBG {0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
-.floating-circle { position:absolute; border-radius:50%; opacity:0.5; animation: floatUp linear infinite; pointer-events:none; }
-@keyframes floatUp { 0% { transform: translateY(100vh) scale(0.5); opacity:0.3; } 100% { transform: translateY(-50vh) scale(1); opacity:0; } }
-.container { background:white; border-radius:25px; padding:40px; max-width:500px; width:100%; box-shadow:0 15px 30px rgba(0,0,0,0.2); text-align:center; position:relative; overflow:hidden; }
-h1 { color:#ff3c78; margin-bottom:15px; font-size:28px; }
-h2 { color:#333; margin-bottom:25px; font-weight:600; }
-.prizes { display:flex; justify-content:space-around; margin-bottom:25px; flex-wrap:wrap; }
-.card { background:linear-gradient(135deg,#ff9a9e,#fad0c4); padding:15px; border-radius:15px; width:120px; margin:10px; color:white; font-weight:600; box-shadow:0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; }
-.card:hover { transform:translateY(-10px); box-shadow:0 15px 25px rgba(0,0,0,0.3); }
-.countdown { display:flex; justify-content:space-around; margin-bottom:25px; background:#ff6b81; color:white; border-radius:15px; padding:15px; font-weight:700; font-size:18px; }
-.countdown div { text-align:center; }
-input { width:100%; padding:12px; margin:10px 0; border-radius:10px; border:1px solid #ccc; font-size:16px; }
-button { width:100%; padding:15px; margin-top:10px; border:none; border-radius:12px; background:#ff3c78; color:white; font-size:16px; cursor:pointer; transition:0.3s; }
-button:hover { background:#ff1a5c; }
-.upi { margin:20px 0; padding:15px; border:2px dashed #ff3c78; border-radius:15px; font-weight:bold; color:#ff3c78; }
-#msg { margin-top:15px; font-weight:bold; color:green; }
-#couponCard { margin-top:25px; padding:20px; border-radius:20px; background:#ffeaa7; color:#2d3436; font-size:20px; font-weight:bold; display:none; box-shadow:0 10px 20px rgba(0,0,0,0.2);}
-#checkBtn { background:#3742fa; margin-top:15px; }
-#checkBtn:hover { background:#2f3542; }
+
+/* Admin Icon */
+.admin-btn{
+position:fixed;
+top:20px;
+right:20px;
+width:45px;
+height:45px;
+border-radius:50%;
+background:rgba(255,255,255,0.2);
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+backdrop-filter:blur(8px);
+transition:0.3s;
+}
+.admin-btn:hover{
+background:#ff9800;
+transform:scale(1.1);
+}
+.admin-btn span{
+font-size:22px;
+}
+
+/* Card */
+.card{
+background:rgba(255,255,255,0.12);
+backdrop-filter: blur(10px);
+padding:30px;
+border-radius:15px;
+width:360px;
+box-shadow:0 0 30px rgba(0,0,0,.4);
+}
+h1{text-align:center;margin-bottom:10px;}
+input,button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:8px;
+}
+input{background:#fff;}
+button{
+background:#00c853;
+color:white;
+font-size:16px;
+cursor:pointer;
+}
+.qr{
+text-align:center;
+margin-top:15px;
+}
+small{color:#ddd;}
 </style>
 </head>
 <body>
-<div class="floating-circle" style="width:50px; height:50px; background:#ff6b81; left:10%; animation-duration:20s;"></div>
-<div class="floating-circle" style="width:30px; height:30px; background:#1dd1a1; left:30%; animation-duration:15s;"></div>
-<div class="floating-circle" style="width:40px; height:40px; background:#feca57; left:70%; animation-duration:25s;"></div>
-<div class="floating-circle" style="width:25px; height:25px; background:#54a0ff; left:50%; animation-duration:18s;"></div>
 
-<div class="container">
-<h1>🎉 Lucky Draw 2026 🎉</h1>
-<h2>Win Amazing Prizes! Register Now</h2>
-<div class="prizes">
-<div class="card">🥇 Bike</div>
-<div class="card">🥈 iPhone</div>
-<div class="card">🥉 Fridge</div>
+<!-- Admin Login Button -->
+<div class="admin-btn" onclick="location.href='admin-login.html'" title="Admin Login">
+  <span>🔒</span>
 </div>
-<div class="countdown">
-  <div><span id="days">0</span><br>Days</div>
-  <div><span id="hours">0</span><br>Hours</div>
-  <div><span id="minutes">0</span><br>Minutes</div>
-  <div><span id="seconds">0</span><br>Seconds</div>
+
+<div class="card">
+<h1>Lucky Draw Entry</h1>
+<p>Entry Fee: ₹125</p>
+
+<form id="form">
+<input placeholder="Full Name" required id="name">
+<input placeholder="Mobile Number" required id="mobile">
+<input placeholder="UPI Transaction ID (UTR)" required id="utr">
+<button>Register</button>
+</form>
+
+<div class="qr">
+<p>Pay via PhonePe</p>
+<b>UPI ID:</b> 9040355538-2@ybl
+<br><small>After payment, enter UTR</small>
 </div>
-<div class="upi">Pay via PhonePe: <b>9040355538-2@ybl</b></div>
-<input id="name" placeholder="Full Name">
-<input id="mobile" placeholder="Mobile Number">
-<input id="utr" placeholder="UPI Transaction ID (UTR)">
-<button onclick="register()">Submit Entry</button>
-<button id="checkBtn" onclick="checkCoupon()">Check Your Coupon</button>
+
 <p id="msg"></p>
-<div id="couponCard">🎫 Your Lucky Draw Coupon: <span id="couponNumber"></span></div>
 </div>
 
 <script>
-// Countdown Timer
-const countDownDate = new Date("Jan 26, 2026 12:00:00").getTime();
-setInterval(function() {
-  const now = new Date().getTime();
-  const distance = countDownDate - now;
-  if(distance < 0) return;
-  document.getElementById("days").innerText = Math.floor(distance/(1000*60*60*24));
-  document.getElementById("hours").innerText = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-  document.getElementById("minutes").innerText = Math.floor((distance%(1000*60*60))/(1000*60));
-  document.getElementById("seconds").innerText = Math.floor((distance%(1000*60))/1000);
-},1000);
-
-// Registration & Coupon Check
-async function register(){
-  const res = await fetch("/register",{
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({name:name.value,mobile:mobile.value,utr:utr.value})
-  });
-  const data = await res.json();
-  msg.innerText = data.message;
-  if(data.status === "approved" && data.coupon){
-    document.getElementById("couponNumber").innerText = data.coupon;
-    document.getElementById("couponCard").style.display = "block";
-  } else { document.getElementById("couponCard").style.display = "none"; }
-}
-async function checkCoupon(){
-  const mobileNum = prompt("Enter your registered mobile number:");
-  if(!mobileNum) return;
-  const res = await fetch("/get-coupon?mobile="+mobileNum);
-  const data = await res.json();
-  if(data.coupon){
-    document.getElementById("couponNumber").innerText = data.coupon;
-    document.getElementById("couponCard").style.display = "block";
-    msg.innerText = "✅ Coupon found!";
-  } else {
-    document.getElementById("couponCard").style.display = "none";
-    msg.innerText = "❌ No approved coupon found for this mobile number.";
-  }
+document.getElementById("form").onsubmit = async (e)=>{
+e.preventDefault();
+const res = await fetch("/register",{
+method:"POST",
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({
+name:name.value,
+mobile:mobile.value,
+utr:utr.value
+})
+});
+const data = await res.json();
+msg.innerText = data.message;
 }
 </script>
+
 </body>
 </html>
